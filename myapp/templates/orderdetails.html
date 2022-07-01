@@ -1,0 +1,75 @@
+
+{% extends 'parent.html' %}
+
+{% block title %}Shopping Cart | Electronic Shopping {% endblock %}
+{% load static %}
+{% block content %}
+{% load mytags %}
+
+<!-- style css -->
+      <link rel="stylesheet" href="{% static 'css/style123.css' %}">
+
+	  <link rel="stylesheet" href="{% static 'css/flexslider.css' %}" />
+
+<!---->
+<div class="checkout">
+	 <div class="container">
+		 <div class="col-md-9 product-price1">
+			 <div class="check-out">
+				 <div class=" cart-items">
+					 <h3>Order Details</h3>
+
+					 <div class="in-check" >
+						  <ul class="unit">
+
+							<li align="center"><span>Image</span></li>
+							<li align="center"><span>Product Name</span></li>
+							<li align="center"><span>Discounted Price</span></li>
+							<li align="center"><span>Qty</span></li>
+							<li align="center"><span>Total Cost</span></li>
+							<div class="clearfix"> </div>
+						  </ul>
+						 {% for data in orderdetailsdata %}
+						  <ul class="cart-header">
+
+							<li class="ring-in"><a href="{% url 'productdetail' data.productid.id %}" ><img src="{{ data.productid.Image1.url }}" class="img-responsive" alt=""></a>
+							</li>
+							<li><span>{{ data.productid.product_name }}</span></li>
+							<li><span>Rs. {{ data.price }}/-</span></li>
+							<li><span>{{ data.qty }}</span></li>
+							<li><span>{{ data.totalcost }}</span></li>
+
+							<div class="clearfix"> </div>
+							</ul>
+							{% endfor %}
+					 </div>
+				  </div>
+
+			 </div>
+		 </div>
+
+	 </div>
+</div>
+<!---->
+<div class="shoping">
+	 <div class="container">
+		 <div class="shpng-grids">
+			 <div class="col-md-4 shpng-grid">
+				 <h3>Free Shipping</h3>
+				 <p>On Order Over Rs999</p>
+			 </div>
+			 <div class="col-md-4 shpng-grid">
+				 <h3>Order Return</h3>
+				 <p>Return Within 14days</p>
+			 </div>
+			 <div class="col-md-4 shpng-grid">
+				 <h3>COD</h3>
+				 <p>Cash On Delivery</p>
+			 </div>
+			 <div class="clearfix"></div>
+		 </div>
+	 </div>
+</div>
+<!---->
+
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends 'parent.html' %}
+
+{% block title %}Product Detail | Electronic Shopping {% endblock %}
+{% load static %}
+{% block content %}
+
+
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+     <div class="container">
+         <div class="card">
+             <div class="container-fliud">
+                 <div class="wrapper row">
+                     {% if productdata %}
+                     <div class="preview col-md-6">
+
+                         <div class="preview-pic tab-content">
+                             <div class="tab-pane active" id="pic-1"><img src="{{ productdata.Image1.url }}" /></div>
+                             <div class="tab-pane" id="pic-2"><img src="{{ productdata.Image2.url }}" /></div>
+                             <div class="tab-pane" id="pic-3"><img src="{{ productdata.Image3.url }}" /></div>
+
+                         </div>
+						 <ul class="preview-thumbnail nav nav-tabs">
+                             <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="{{ productdata.Image1.url }}" /></a></li>
+                             <li><a data-target="#pic-2" data-toggle="tab"><img src="{{ productdata.Image2.url }}" /></a></li>
+                             <li><a data-target="#pic-3" data-toggle="tab"><img src="{{ productdata.Image3.url }}" /></a></li>
+
+                         </ul>
+                     </div>
+                     <div class="details col-md-6">
+                         <h3 class="product-title">{{ productdata.product_name }}</h3>
+                        <h4 > Features : </h4>
+
+                         <p class="product-description">{{ productdata.features | safe }}</p>
+                         	<form name="form1" method="post" action="{% url 'addtocart' %}">
+						   	{% csrf_token %}
+                                <h6> MRP:  Rs {{ productdata.price }}</h6>
+                                {% if productdata.discount_percent > 0 %}
+                                <h6> Discount:  Rs {{ productdata.discount_percent }}% Off</h6>
+                                {% endif %}
+                                <h4 class="price">Sellling Price : <span>{{ productdata.discountedprice |floatformat:"0" }} </span> </h4>
+                                <div>
+                                    <label>QTY</label>
+                                    <select name="qty">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    </select>
+                                </div>
+								  <input type="hidden" name="pid" value="{{productdata.id}}">
+								  <input type="hidden" name="price" value="{{productdata.discountedprice}}"><br>
+								  <input type="submit" value="Add to Cart" name="submitbtn" class="btn btn-success"/>
+                            </form>
+                         <h4> Details :</h4>
+                         <p class="product-description">{{ productdata.details | safe}}</p>
+                     </div>
+                     {% endif %}
+                 </div>
+             </div>
+         </div>
+     </div>
+  </body>
+</html>
+
+
+
+{% endblock %}

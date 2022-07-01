@@ -1,0 +1,62 @@
+
+{% extends 'parent.html' %}
+
+{% block title %} Product Detail | Electronic Shopping {% endblock %}
+{% load static %}
+{% block content %}
+
+<!-- style css -->
+      <link rel="stylesheet" href="{% static 'css/style123.css' %}">
+
+	  <link rel="stylesheet" href="{% static 'css/flexslider.css' %}" />
+
+
+<div class="#">
+	  <div class="container">
+
+			<!---start-contact---->
+			<br><br><h2 align="center">Checkout</h2>
+		  <div class="section group">
+
+				<div class="col-md-6 span_2_of_3">
+				  <div class="contact-form">
+					    <form method="post" action="{% url 'order' %}">
+							{% csrf_token %}
+					    	<div>
+						    	<span><label>Name</label></span>
+						    	<span><input name="name" type="text" class="textbox" required="required"></span>
+						    </div>
+                            <div>
+						    	<span><label>Address</label></span>
+						    	<span><textarea  name="address" required="required"></textarea></span>
+						    </div>
+                            <div>
+						     	<span><label>Phone</label></span>
+						    	<span><input name="phone" type="number" class="textbox" required="required"></span>
+						    </div>
+						    <div>
+						    	<span><label>E-Mail</label></span>
+						    	<span><input name="email" type="email" class="textbox" required="required"></span>
+						    </div>
+                            <div>
+                                <span><label>Payment Method</label></span>
+						    	<span>
+                                    <select name="paymentmethod" required="required">
+                                        <option value="">Choose Payment Method</option>
+                                        <option value="cod">Cash on Delivery</option>
+                                        <option value="paytm_gpay">BHIM/PhonePe/GPay-0987654321</option>
+                                    </select>
+                                </span>
+                            </div>
+						   <div>
+						   		<span><input type="submit" class="mybutton" value="Submit"></span>
+						  </div>
+					    </form>
+
+				    </div>
+  				</div>
+		  </div>
+	  </div>
+ </div>
+<!---->
+{% endblock %}

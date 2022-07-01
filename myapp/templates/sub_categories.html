@@ -1,0 +1,40 @@
+{% extends 'parent.html' %}
+{% block title %} Electronic Shopping {% endblock %}
+{% load static %}
+{% block content %}
+
+<div class="col-md-12">
+      <div class="titlepage">
+          <h2>  </h2> <br>
+         <h2>For you</h2>
+      </div>
+</div>
+
+
+    <!-- three_box -->
+      <div class="three_box"><br>
+         <div class="container">
+            <div class="row">
+               {% if subcategorydata %}
+		       {% for data in subcategorydata %}
+               <div class="col-md-4">
+                  <div class="box_text">
+                     <i><img src="{{ data.subcategory_Image.url }}" alt=""/></i>
+                      <a href="{% url 'product' %}?subcatid={{ data.id }}&catid={{data.category.id}}">
+                     <h3>{{ data.subcategory_name }}</h3>
+                  </div>
+               </div>
+               {% endfor %}
+               {% else %}
+               <h1>No subcategories added yet</h1>
+		       {% endif %}
+            </div>
+         </div>
+      </div>
+      <!-- three_box -->
+
+
+
+
+
+{% endblock %}

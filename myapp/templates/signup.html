@@ -1,0 +1,44 @@
+{% extends 'parent.html' %}
+
+{% block title %} Signup | Electronic Shopping {% endblock %}
+{% load static %}
+{% block content %}
+
+<!--===================================================-->
+
+<link href="{% static 'css/style123.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+<!--===================================================-->
+
+<div class="container">
+	 <div class="registration">
+		 <div class="registration_left"><br><br>
+			 <h2>new user? <span> create an account </span></h2>
+			 {% if messages %}
+					 	<ul>
+							{% for message in messages %}
+							<li>{{ message }}</li>
+							{% endfor %}
+						</ul>
+					 {% endif %}
+
+			 <div class="registration_form">
+			 <!-- Form -->
+				 <form action="" method="post">
+					 {% csrf_token %}
+					 {{ form }}
+					<div>
+						<input type="submit" value="create an account" id="register-submit">
+					</div>
+					 <a style="font-size:18px;" href="{% url 'login'%}">Already have an account?</a>
+				</form>
+				<!-- /Form -->
+			 </div>
+		 </div>
+		 <div class="clearfix"></div>
+	 </div>
+</div>
+<!---->
+
+
+{% endblock %}

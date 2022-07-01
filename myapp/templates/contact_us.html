@@ -1,0 +1,80 @@
+
+{% extends 'parent.html' %}
+
+{% block title %}Contact Us | Electronic Shopping {% endblock %}
+{% load static %}
+{% block content %}
+{% load mytags %}
+
+<!-- style css -->
+      <link rel="stylesheet" href="{% static 'css/style123.css' %}">
+
+	  <link rel="stylesheet" href="{% static 'css/flexslider.css' %}" />
+
+<!---->
+
+<div class="#">
+	  <div class="container">
+
+			<!---start-contact---->
+			<br><br><h3 align="center" style="font-size:300% ">Contact Us</h3><br>
+		  		{% if messages %}
+							<ul>
+								{% for message in messages %}
+								<li align="center" style="font-size:150% ; color:tomato ">{{ message }}</li>
+								{% endfor %}
+							</ul>
+		  		{% endif %}
+		  <div class="section group">
+<!--				<div class="col-md-6 span_1_of_3">-->
+<!--					<div class="contact_info">-->
+<!--			    	 	<h4>Find Us Here</h4>-->
+<!--			    	 		<div class="map">-->
+<!--					   			<div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=fnp jalandhar&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://mcpepro.com/">MCPEPRO</a></div><style>.mapouter{position:relative;text-align:right;width:100%;height:400px;}.gmap_canvas {overflow:hidden;background:none!important;width:100%;height:400px;}.gmap_iframe {height:400px!important;}</style></div>-->
+<!--					   		</div>-->
+<!--      				</div>-->
+<!--      			<div class="company_address">-->
+<!--				     	<h4>Company Information :</h4>-->
+<!--						    	<p>FNP Jalandhar</p>-->
+<!--						   		<p>Model Town</p>-->
+<!--						   		<p>India</p>-->
+<!--				   		<p>Phone:(00) 222 666 444</p>-->
+<!--				   		<p>Fax: (000) 000 00 00 0</p>-->
+<!--				 	 	<p>Email: <a href="mailto:info@example.com">info@mycompany.com</a></p>-->
+<!--				   		<p>Follow on: <a href="#">Facebook</a>, <a href="#">Twitter</a></p>-->
+<!--				   </div>-->
+<!--				</div>-->
+
+				<div class="col-md-6 span_2_of_3">
+					<div class="contact-form">
+					    <form action="{% url 'contact' %}" method="post">
+                            {% csrf_token %}
+					    	<div>
+						    	<span><label>NAME</label></span>
+						    	<span><input name="Name" type="text" class="textbox"></span>
+						    </div>
+						    <div>
+						    	<span><label>E-MAIL</label></span>
+						    	<span><input name="Email" type="text" class="textbox"></span>
+						    </div>
+						    <div>
+						     	<span><label>MOBILE</label></span>
+						    	<span><input name="Phone" type="text" class="textbox"></span>
+						    </div>
+						    <div>
+						    	<span><label>SUBJECT</label></span>
+						    	<span><textarea name="Msg"> </textarea></span>
+						    </div>
+						   <div>
+						   		<span><input type="submit" class="mybutton" value="Submit"></span>
+						  </div>
+					    </form>
+
+				    </div>
+  				</div>
+		  </div>
+	  </div>
+ </div>
+<!---->
+
+{% endblock %}

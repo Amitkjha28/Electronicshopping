@@ -1,0 +1,46 @@
+
+{% extends 'parent.html' %}
+
+{% block title %}Login | Electronic Shopping {% endblock %}
+{% load static %}
+{% block content %}
+
+{% load mytags %}
+
+<!-- style css -->
+      <link rel="stylesheet" href="{% static 'css/style123.css' %}">
+
+	  <link rel="stylesheet" href="{% static 'css/flexslider.css' %}" />
+
+<div class="login_sec">
+	 <div class="container">
+		 <h2>Login</h2>
+		 <div class="col-md-6 log">
+				Current Date Time is {% current_date %}
+			     {% if messages %}
+					 	<ul>
+							{% for message in messages %}
+							<li >{{ message }}</li>
+							{% endfor %}
+						</ul>
+			     {% endif %}
+				 <form method="post">
+
+					 {% csrf_token %}
+					 {{ form }}
+					 <input type="hidden" name="next" value="{{ request.GET.next }}">
+					 <input type="submit" value="Login">
+					  <a class="acount-btn" href="{% url 'signup' %}"> Create New Account</a>
+
+				 </form>
+<!--				 <a href="#">Forgot Password ?</a>-->
+
+		 </div>
+
+		 <div class="clearfix"></div>
+	 </div>
+</div>
+<!---->
+
+
+{% endblock %}

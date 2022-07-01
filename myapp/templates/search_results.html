@@ -1,0 +1,85 @@
+
+{% extends 'parent.html' %}
+
+{% block title %}Search Results | Electronic Shopping {% endblock %}
+{% load static %}
+{% block content %}
+
+<!-- style css -->
+      <link rel="stylesheet" href="{% static 'css/style123.css' %}">
+
+	  <link rel="stylesheet" href="{% static 'css/flexslider.css' %}" />
+
+<!---->
+
+<!--====================================================================-->
+
+ <div  class="products">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="titlepage">
+                     <h2 align="center">Search Results</h2>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="our_products">
+                     <div class="row">
+                        {% if productsdata %}
+		                {% for data in productsdata %}
+                        <div class="col-md-4 margin_bottom1">
+                           <div class="product_box">
+                              <figure><img src="{{data.Image1.url}}" alt="#"/></figure>
+                              <a href="{% url 'productdetail' data.id %}">
+                              <h4>{{data.product_name}}</h4>
+                              <h4>Rs {{ data.discountedprice|floatformat:"0" }} [{{ data.discount_percent }}% Off]</h4>
+                           </div>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <h1> No Product </h1>
+                        {% endif %}
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+{% endblock %}
+
+<!--=================================================-->
+<!---->
+<!--<div class="bride-grids">-->
+<!--	 <div class="container">-->
+<!--		 <h2 align="center">Search Results</h2>-->
+<!--		 <br>-->
+<!--		 {% if productsdata %}-->
+<!--		 {% for data in productsdata %}-->
+<!--		 <div class="col-md-4 bride-grid">-->
+<!--			 <div class="content-grid l-grids">-->
+<!--				 <figure class="effect-bubba">-->
+<!--						<img src="{{ data.Image1.url }}" alt=""/>-->
+<!--					   <a href="{% url 'productdetail' data.id %}">-->
+<!--&lt;!&ndash;						 <figcaption>&ndash;&gt;-->
+<!--&lt;!&ndash;								<h4>{{ data.product_name }} </h4>&ndash;&gt;-->
+<!--&lt;!&ndash;								<p>Get the best deal</p>&ndash;&gt;-->
+<!--&lt;!&ndash;							</figcaption>&ndash;&gt;-->
+<!--					</a>-->
+
+<!--				 </figure>-->
+<!--				 <h3>{{ data.product_name }}</h3>-->
+<!--				 <div class="clearfix"></div>-->
+
+<!--			 </div>-->
+<!--		 </div>-->
+<!--		 {% endfor %}-->
+<!--		 {% else %}-->
+<!--		 <h1>No Products added yet</h1>-->
+<!--		 {% endif %}-->
+<!--		 <div class="clearfix"></div>-->
+<!--	 </div>-->
+<!--</div>-->
+

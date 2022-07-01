@@ -1,0 +1,60 @@
+
+{% extends 'parent.html' %}
+
+{% block title %}Previous Orders | Electronic Shopping {% endblock %}
+{% load static %}
+{% block content %}
+{% load mytags %}
+
+<!-- style css -->
+      <link rel="stylesheet" href="{% static 'css/style123.css' %}">
+
+	  <link rel="stylesheet" href="{% static 'css/flexslider.css' %}" />
+
+<!---->
+<div class="checkout">
+	 <div class="container">
+
+		 <div class="col-md-12 product-price1">
+			 <div class="check-out">
+				 <div class=" cart-items">
+					{% if orderscount > 0 %}
+					 <br><br><h2 align="center" style="font-size:300% ;color:orangered"  >Previous Orders</h2><br>
+
+					 <div class="in-check" >
+						  <ul class="unit">
+
+							<li align="center"><span>Order Date</span></li>
+							<li align="center"><span>Person Name</span></li>
+							<li align="center"><span>Grand Total</span></li>
+							  <li align="center"><span>Order Status</span></li>
+							  <li align="center"><span>Order Details</span></li>
+							<div class="clearfix"> </div>
+						  </ul>
+						 {% for data in porders %}
+						  <ul class="cart-header">
+
+
+							<li><span>{{ data.order_date }}</span></li>
+							<li><span>{{ data.person_name }}</span></li>
+							<li><span>Rs.{{ data.grand_total }}/-</span></li>
+						  <li><span>{{ data.order_status }}</span></li>
+							  <li><span><a href="{% url 'orderdetails' data.id %}">More Details</a></span></li>
+							<div class="clearfix"> </div>
+							</ul>
+							{% endfor %}
+					 </div>
+				  </div>
+				 {% else %}
+				 	<h3 align="center"> No Previous Orders </h3><br>
+				 {% endif %}
+			 </div>
+		 </div>
+
+	 </div>
+</div>
+<!---->
+
+<!---->
+
+{% endblock %}
